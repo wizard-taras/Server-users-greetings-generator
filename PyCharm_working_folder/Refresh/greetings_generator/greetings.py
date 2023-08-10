@@ -12,7 +12,7 @@ Record of revisions:
     09/08/23    Koziupa Taras           Original code
     10/08/23    Koziupa Taras     Added: reports generation feature, the 'input_data'
                                     dictionary containing all the necessary information for
-                                    greetings generation
+                                    greetings generation, current users list extraction from .csv file (local)
 
 Define variables:
     input_data -- A dictionary containing usernames and reports data for the admin and serviceman
