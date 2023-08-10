@@ -30,21 +30,23 @@ users (admin, serviceman, support engineer)
 def greetings(input_data):
     users, admin_reports, serviceman_reports = [input_data['users'], input_data['admin_reports'],
                                                 input_data['serviceman_reports']]
-    for user in users:
-        if user not in ('admin', 'serviceman', 'support_eng'):
-            print(f"Hello, {user.title()}. Welcome to the server.")
+    if users:
+        for user in users:
+            if user not in ('admin', 'serviceman', 'support_eng'):
+                print(f"Hello, {user.title()}. Welcome to the server.")
 
-        elif user == 'admin':
-            output = f'\nHello, {user.title()}. Welcome to the server. \nThe reports for you are:' \
-                     f'\nNumber of active users by now: {admin_reports[0]}' \
-                     f'\nTotal traffic consumed by the users previuos day, MB: {admin_reports[1]}'
-            print(output)
+            elif user == 'admin':
+                output = f'\nHello, {user.title()}. Welcome to the server. \nThe reports for you are:' \
+                         f'\nNumber of active users by now: {admin_reports[0]}' \
+                         f'\nTotal traffic consumed by the users previuos day, MB: {admin_reports[1]}'
+                print(output)
 
-        elif user == 'serviceman':
-            output = f'\nHello, {user.title()}. Welcome to the server. \nThe reports for you are:' \
-                     f'\nAvailable free space on the server SSD disks, GiB: {serviceman_reports[0]}' \
-                     f'\nTotal SSD read/write fails: {serviceman_reports[1]}'
-            print(output)
+            elif user == 'serviceman':
+                output = f'\nHello, {user.title()}. Welcome to the server. \nThe reports for you are:' \
+                         f'\nAvailable free space on the server SSD disks, GiB: {serviceman_reports[0]}' \
+                         f'\nTotal SSD read/write fails: {serviceman_reports[1]}'
+                print(output)
+    else: print("No users in the server's database")
 
 
 '''INPUT DATA'''
