@@ -37,7 +37,7 @@ def greetings(input_data):
 
     if current_users:
         for user in current_users:
-            if user not in new_users:
+            if user.lower() or user.upper() or user.title() not in new_users:
                 if user not in ('admin', 'serviceman', 'support_eng'):
                     print(f"Hello, {user.title()}. Welcome to the server.")
 
