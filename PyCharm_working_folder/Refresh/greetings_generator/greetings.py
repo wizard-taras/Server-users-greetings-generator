@@ -24,8 +24,9 @@ Define variables:
 users (admin, serviceman, support engineer)
 '''
 
-
 '''FUNCTIONS'''
+
+
 def greetings(input_data):
     users, admin_reports, serviceman_reports = [input_data['users'], input_data['admin_reports'],
                                                 input_data['serviceman_reports']]
