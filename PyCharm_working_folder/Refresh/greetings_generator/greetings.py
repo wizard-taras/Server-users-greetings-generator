@@ -24,33 +24,40 @@ Define variables:
 users (admin, serviceman, support engineer)
 '''
 
+import pandas as pnds
 '''FUNCTIONS'''
 
 
 def greetings(input_data):
-    users, admin_reports, serviceman_reports = [input_data['users'], input_data['admin_reports'],
+    new_users, admin_reports, serviceman_reports = [input_data['new_users'], input_data['admin_reports'],
                                                 input_data['serviceman_reports']]
-    if users:
-        for user in users:
-            if user not in ('admin', 'serviceman', 'support_eng'):
-                print(f"Hello, {user.title()}. Welcome to the server.")
 
-            elif user == 'admin':
-                output = f'\nHello, {user.title()}. Welcome to the server. \nThe reports for you are:' \
-                         f'\nNumber of active users by now: {admin_reports[0]}' \
-                         f'\nTotal traffic consumed by the users previuos day, MB: {admin_reports[1]}'
-                print(output)
+    df = pnds.read_csv('users_csv.csv')
+    current_users = df['users'].values.tolist()
 
-            elif user == 'serviceman':
-                output = f'\nHello, {user.title()}. Welcome to the server. \nThe reports for you are:' \
-                         f'\nAvailable free space on the server SSD disks, GiB: {serviceman_reports[0]}' \
-                         f'\nTotal SSD read/write fails: {serviceman_reports[1]}'
-                print(output)
+    if current_users:
+        for user in current_users:
+            if user not in new_users:
+                if user not in ('admin', 'serviceman', 'support_eng'):
+                    print(f"Hello, {user.title()}. Welcome to the server.")
+
+                elif user == 'admin':
+                    output = f'\nHello, {user.title()}. Welcome to the server. \nThe reports for you are:' \
+                            f'\nNumber of active users by now: {admin_reports[0]}' \
+                            f'\nTotal traffic consumed by the users previuos day, MB: {admin_reports[1]}'
+                    print(output)
+
+                elif user == 'serviceman':
+                    output = f'\nHello, {user.title()}. Welcome to the server. \nThe reports for you are:' \
+                            f'\nAvailable free space on the server SSD disks, GiB: {serviceman_reports[0]}' \
+                            f'\nTotal SSD read/write fails: {serviceman_reports[1]}'
+                    print(output)
+            else: print(f"Sorry, {user.title()}, user with the provided name already exists. Try to pick another username.")
     else: print("No users in the server's database")
 
 
 '''INPUT DATA'''
-input_data = {'users': ['taras', 'sidzo', 'phoebe', 'admin', 'serviceman', 'support_eng'],
+input_data = {'new_users': ['taras', 'steven', 'phoebe', 'admin', 'serviceman', 'support_eng'],
               'admin_reports': [1225, 5578801], 'serviceman_reports': [557, 17]}
 
 greetings(input_data)
